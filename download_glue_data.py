@@ -25,7 +25,6 @@ import tempfile
 import urllib.request
 import zipfile
 import io
-URLLIB = urllib.request
 
 TASKS = ["CoLA", "SST", "MRPC", "QQP", "STS", "MNLI", "QNLI", "RTE", "WNLI", "diagnostic"]
 TASK2PATH = {"CoLA":'https://dl.fbaipublicfiles.com/glue/data/CoLA.zip',
@@ -54,6 +53,7 @@ def download_and_extract(task, data_dir):
     print("\tCompleted!")
 
 def format_mrpc(data_dir, path_to_data):
+    URLLIB = urllib.request
     print("Processing MRPC...")
     mrpc_dir = os.path.join(data_dir, "MRPC")
     if not os.path.isdir(mrpc_dir):
