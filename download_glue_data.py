@@ -26,6 +26,8 @@ import urllib.request
 import zipfile
 import io
 
+URLLIB = urllib.request
+
 TASKS = ["CoLA", "SST", "MRPC", "QQP", "STS", "MNLI", "QNLI", "RTE", "WNLI", "diagnostic"]
 TASK2PATH = {"CoLA":'https://dl.fbaipublicfiles.com/glue/data/CoLA.zip',
              "SST":'https://dl.fbaipublicfiles.com/glue/data/SST-2.zip',
@@ -82,7 +84,7 @@ def format_mrpc(data_dir, path_to_data):
             test_fh.write("%d\t%s\t%s\t%s\t%s\n" % (idx, id1, id2, s1, s2))
 
     try:
-        URLLIB.urlretrieve(TASK2PATH["MRPC"], os.path.join(mrpc_dir, "dev_ids.tsv"))
+        urllib.request.urlretrieve(TASK2PATH["MRPC"], os.path.join(mrpc_dir, "dev_ids.tsv"))
     except KeyError or urllib.error.HTTPError:
         print("\tError downloading standard development IDs for MRPC. You will need to manually split your data.")
         return
